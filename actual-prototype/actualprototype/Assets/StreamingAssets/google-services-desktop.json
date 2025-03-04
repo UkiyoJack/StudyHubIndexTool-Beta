@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "612204092975",
+    "firebase_url": "https://studyhubindextool-default-rtdb.firebaseio.com",
+    "project_id": "studyhubindextool",
+    "storage_bucket": "studyhubindextool.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612204092975:android:3d6a6283b95f2a3cd230da",
+        "android_client_info": {
+          "package_name": "com.UkiyoGames.StudyHubIndexTool"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp0bETx1JAhWNm91r-2-dLrmVBKhZVaug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
