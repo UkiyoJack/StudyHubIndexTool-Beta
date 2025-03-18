@@ -1,28 +1,49 @@
-/*using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
 using System;
+using static UnityEditor.FilePathAttribute;
+using Unity.VisualScripting;
 
 public class SearchPage : MonoBehaviour
 {
-    
+
     public TMP_InputField searchInputField; //input field ref
 
-   
+
     public Transform resultsContent; //content area ref
 
-    
+
     public GameObject resultPrefab; //search results prefab
 
-    //placeholder for database
-    private List<string> studySpaces = new List<string> { "Library", "Cafe", "Study Room", "Lab" };
+    public GameObject detailsPage; // Reference to the details page
+
+    public TextMeshProUGUI nameText; // Text field for the name on the details page
+
+    public TextMeshProUGUI postCodeText; // Text field for the post code
+
+    public TextMeshProUGUI descText; // Text field for the description
+
+    /*    public TextMeshProUGUI detailsCoordinatesText;*/
+
+    //placeholder for location data
+    private List<Location> studySpaces = new List<Location>();
+
+    private void Start()
+    {
+        // Initialize with sample data
+        studySpaces.Add(new Location("Library", "AB12 3CD", new Vector2(51.5074f, -0.1278f), "Quiet library with Wi-Fi"));
+        studySpaces.Add(new Location("Cafe", "EF45 6GH", new Vector2(51.5094f, -0.1280f), "Cozy cafe with power outlets"));
+        studySpaces.Add(new Location("Study Room", "GH78 9IJ", new Vector2(51.5054f, -0.1275f), "Private study room"));
+        studySpaces.Add(new Location("Lab", "JK12 3LM", new Vector2(51.5044f, -0.1265f), "Open-access computer lab"));
+    }
 
     //SEARCH FUNCTION:
     public void OnSearch()
     {
         Debug.Log("Called Search Function!");
-        
+
         string query = searchInputField.text.ToLower(); //convert to lowercase
 
         //clear previous search queries
@@ -32,23 +53,68 @@ public class SearchPage : MonoBehaviour
         }
 
         //foreach loop to loop through data and display results
-        foreach (string space in studySpaces)
+        foreach (Location space in studySpaces)
         {
-            if (space.ToLower().Contains(query))
+            if (space.name.ToLower().Contains(query))
             {
-                //create new result item
+                // Create new result item
                 GameObject newResult = Instantiate(resultPrefab, resultsContent);
 
-                //set text of result
-                newResult.GetComponentInChildren<TextMeshProUGUI>().text = space;
+                // Set text of the result with more data (name, postal code, etc.)
+                newResult.GetComponentInChildren<TextMeshProUGUI>().text = space.name;
+
+                /*//OnClick event to open the details page
+                newResult.GetComponent<Button>().onClick.AddListener(() => OpenDetailsPage(space));*/
+                Button resultButton = newResult.GetComponent<Button>();
+                if (resultButton != null)
+                {
+                    // Make sure to pass the correct space data to the OpenDetailsPage method
+                    resultButton.onClick.AddListener(() => OpenDetailsPage(space));
+                }
             }
         }
     }
-}*/
+
+    public void OpenDetailsPage(Location location)
+    {
+        // Set the details text fields with the location information
+        nameText.text = location.name;
+        postCodeText.text = location.postCode;
+        descText.text = location.desc;
+        /*detailsCoordinatesText.text = "Coordinates: " + location.coordinates.ToString();*/
+
+        // Show the details page
+        detailsPage.SetActive(true);
+    }
+
+    
+    public void CloseDetailsPage()
+    {
+        detailsPage.SetActive(false);
+    }
+}
+
+[System.Serializable]
+public class Location
+{
+    public string name;         //Name of location
+    public string postCode;     //Post Code of location
+    public Vector2 coords;      //Maps Co-ords
+    public string desc;         //Breif description
+
+    // Constructor to initialize a new location
+    public Location(string name, string postCode, Vector2 coordinates, string description)
+    {
+        this.name = name;
+        this.postCode = postCode;
+        this.coords = coordinates;
+        this.desc = description;
+    }
+}
 
 //NEW SEARCHMANAGER
 
-using Firebase.Database;
+/*using Firebase.Database;
 using Firebase.Extensions;
 using UnityEngine;
 using TMPro;
@@ -59,6 +125,8 @@ public class SearchManager : MonoBehaviour
     public TMP_InputField searchInputField;  // The input field where the user types the search term
     public TMP_Text searchResultText;        // The UI text element to display the result
     private DatabaseReference databaseReference;
+
+    *//*FirebaseApp app = FirebaseApp.DefaultInstance;*//*
 
     void Start()
     {
@@ -90,6 +158,16 @@ public class SearchManager : MonoBehaviour
         }
 
 
+        *//*void OnDestroy()
+        {
+            // Make sure to clean up Firebase when exiting play mode
+            
+            if (app != null)
+            {
+                app.Dispose();
+                Debug.Log("Firebase app disposed.");
+            }
+        }*//*
 
 
         string searchTerm = searchInputField.text.Trim().ToLower();
@@ -142,7 +220,7 @@ public class SearchManager : MonoBehaviour
             }
         });
     }
-}
+}*/
 
 
 /*using Firebase.Database;
