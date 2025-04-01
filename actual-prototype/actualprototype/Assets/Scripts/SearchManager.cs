@@ -41,7 +41,7 @@ public class SearchPage : MonoBehaviour
 
 
     //placeholder for location data
-    private List<Location> studySpaces = new List<Location>();
+    public static List<Location> studySpaces = new List<Location>();
 
     private void Start()
     {
