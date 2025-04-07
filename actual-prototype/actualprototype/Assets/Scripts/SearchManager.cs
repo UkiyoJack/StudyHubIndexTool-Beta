@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
 using System;
-using static UnityEditor.FilePathAttribute;
 using Unity.VisualScripting;
 
 public class SearchPage : MonoBehaviour
@@ -157,13 +156,24 @@ public class SearchPage : MonoBehaviour
 
     public void OpenDetailsPage(Location location)
     {
+
+        if (location == null)
+        {
+            Debug.LogError("OpenDetailsPage: Location is null");
+            return;
+        }
+
+        
+
         currentSelectedLocation = location; //store selected location value here
 
         //set the details text fields with the location information
         nameText.text = location.name;
         postCodeText.text = location.postCode;
         descText.text = location.desc;
-        detailsCoordinatesText.text = currentSelectedLocation.coordsX.ToString() + currentSelectedLocation.coordsY.ToString();
+        /*detailsCoordinatesText.text = currentSelectedLocation.coordsX.ToString() + currentSelectedLocation.coordsY.ToString();*/
+
+
 
         //show the details page
         detailsPage.SetActive(true);
