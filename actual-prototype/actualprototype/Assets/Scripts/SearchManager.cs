@@ -15,16 +15,19 @@ public class SearchPage : MonoBehaviour
 
     public GameObject resultPrefab; //search results prefab
 
-    public GameObject detailsPage; // Reference to the details page
+    public GameObject detailsPage; //reference to the details page
 
-    public TextMeshProUGUI nameText; // Text field for the name on the details page
+    public GameObject filtersPage; //reference to the details page
 
-    public TextMeshProUGUI postCodeText; // Text field for the post code
+    public TextMeshProUGUI nameText; //text field for the name on the details page
 
-    public TextMeshProUGUI descText; // Text field for the description
+    public TextMeshProUGUI postCodeText; //text field for the post code
 
-    /*    public TextMeshProUGUI detailsCoordinatesText;*/
+    public TextMeshProUGUI descText; //text field for the description
 
+    public TextMeshProUGUI detailsCoordinatesText; //text field for coords
+
+    private Location currentSelectedLocation;
 
 
     //Active Filters:
@@ -46,9 +49,9 @@ public class SearchPage : MonoBehaviour
     private void Start()
     {
         // Initialize with sample data
-        studySpaces.Add(new Location("Library", "AB12 3CD", new Vector2(51.5074f, -0.1278f), "Quiet library with Wi-Fi", "Low", true, true, true));
-        studySpaces.Add(new Location("Cafe", "EF45 6GH", new Vector2(51.5094f, -0.1280f), "Cozy cafe with power outlets", "Medium", true, true, false));
-        studySpaces.Add(new Location("Study Room", "GH78 9IJ", new Vector2(51.5054f, -0.1275f), "Private study room", "Low", false, true, true));
+        studySpaces.Add(new Location("Library", "AB12 3CD", 51.5074f, -0.1278f, "Quiet library with Wi-Fi", "Low", true, true, true));
+        studySpaces.Add(new Location("Cafe", "EF45 6GH", 51.5094f, -0.1280f, "Cozy cafe with power outlets", "Medium", true, true, false));
+        studySpaces.Add(new Location("Study Room", "GH78 9IJ", 51.5054f, -0.1275f, "Private study room", "Low", false, true, true));
     }
 
     public void SetNoiseLevel(string level)
@@ -154,20 +157,40 @@ public class SearchPage : MonoBehaviour
 
     public void OpenDetailsPage(Location location)
     {
-        // Set the details text fields with the location information
+        currentSelectedLocation = location; //store selected location value here
+
+        //set the details text fields with the location information
         nameText.text = location.name;
         postCodeText.text = location.postCode;
         descText.text = location.desc;
-        /*detailsCoordinatesText.text = "Coordinates: " + location.coordinates.ToString();*/
+        detailsCoordinatesText.text = currentSelectedLocation.coordsX.ToString() + currentSelectedLocation.coordsY.ToString();
 
-        // Show the details page
+        //show the details page
         detailsPage.SetActive(true);
+        filtersPage.SetActive(false);
     }
 
-    
+
     public void CloseDetailsPage()
     {
         detailsPage.SetActive(false);
+        filtersPage.SetActive(true);
+    }
+
+    public void OpenInMapsButton()
+    {
+        /*string mapUrl = $"https://www.google.com/maps/search/?api=1&query={studySpaces.coordsX},{studySpaces.coordsY}";
+        Application.OpenURL(mapUrl);*/
+
+        if (currentSelectedLocation != null)
+        {
+            string mapUrl = $"https://www.google.com/maps/search/?api=1&query={currentSelectedLocation.coordsX},{currentSelectedLocation.coordsY}";
+            Application.OpenURL(mapUrl);
+        }
+        else
+        {
+            Debug.LogWarning("No location selected to open in Maps.");
+        }
     }
 }
 
@@ -177,7 +200,8 @@ public class Location
     //fields for 
     public string name;         //Name of location
     public string postCode;     //Post Code of location
-    public Vector2 coords;      //Maps Co-ords
+    public float coordsX;       //Maps X Co-ords
+    public float coordsY;       //Maps Y Co-ords
     public string desc;         //Breif description
 
     //criteria/filters:
@@ -187,13 +211,13 @@ public class Location
     public bool isIndoors; //y/n
 
     // Constructor to initialize a new location
-    public Location(string name, string postCode, Vector2 coordinates, string description, string noiseLevel, bool hasChargingPorts, bool hasWiFi, bool isIndoors)
+    public Location(string name, string postCode, float coordsX, float coordsY, string description, string noiseLevel, bool hasChargingPorts, bool hasWiFi, bool isIndoors)
     {
         this.name = name;
         this.postCode = postCode;
-        this.coords = coordinates;
+        this.coordsX = coordsX;
+        this.coordsY = coordsY;
         this.desc = description;
-
         this.noiseLevel = noiseLevel;
         this.hasChargingPorts = hasChargingPorts;
         this.hasWiFi = hasWiFi;

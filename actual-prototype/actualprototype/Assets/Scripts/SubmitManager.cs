@@ -55,19 +55,19 @@ public class SubmitPage : MonoBehaviour
         }
 
         //create new location
-        Location newLocation = new Location(locationName, postCode, new Vector2(coordinatesX, coordinatesY), description, noiseLevel, hasChargingPorts, hasWiFi, isIndoors);
+        Location newLocation = new Location(locationName, postCode, coordinatesX, coordinatesY,/*new Vector2(coordinatesX, coordinatesY)*/ description, noiseLevel, hasChargingPorts, hasWiFi, isIndoors);
 
         // Add the new location to the list of study spaces
         SearchPage.studySpaces.Add(newLocation);
 
         //log the new location
-        Debug.Log($"New location added: {newLocation.name}, {newLocation.postCode}, {newLocation.coords}, {newLocation.desc}");
+        Debug.Log($"New location added: {newLocation.name}, {newLocation.postCode}, {newLocation.coordsX}, {newLocation.coordsY}, {newLocation.desc}");
 
         //log entire location list
         Debug.Log("Current list of locations:");
         foreach (Location location in SearchPage.studySpaces)
         {
-            Debug.Log($"{location.name} - {location.postCode} - {location.coords}");
+            Debug.Log($"{location.name} - {location.postCode}");
         }
 
         Debug.Log($"New location '{newLocation.name}' added successfully!");
