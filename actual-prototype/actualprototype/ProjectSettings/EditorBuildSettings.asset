@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Submit.unity
     guid: cace4a81cba69eb4ebc472cf3b208b47
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/About.unity
     guid: a506613c9fc607346811c4d4909fbbe4
   m_configObjects: {}

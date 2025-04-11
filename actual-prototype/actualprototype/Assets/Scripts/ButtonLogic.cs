@@ -20,4 +20,9 @@ public class buttonLoic : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void AboutButton()
+    {
+        SceneManager.LoadScene(3);
+    }
 }

@@ -318,15 +318,6 @@ MonoBehaviour:
   chargingPortsToggle: {fileID: 38721353}
   indoorsToggle: {fileID: 1878293619}
   outdoorsToggle: {fileID: 292568207}
-  studySpaces:
-  - name: 
-    postCode: 
-    coords: {x: 0, y: 0}
-    desc: 
-    noiseLevel: 
-    hasChargingPorts: 0
-    hasWiFi: 0
-    isIndoors: 0
 --- !u!4 &22623311
 Transform:
   m_ObjectHideFlags: 0
@@ -1447,7 +1438,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.7146, y: -288}
+  m_AnchoredPosition: {x: 1.77, y: -294}
   m_SizeDelta: {x: 699.6, y: 110.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &260932050
@@ -2664,8 +2655,8 @@ Transform:
   m_GameObject: {fileID: 669513018}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 61, y: 61, z: 61}
+  m_LocalPosition: {x: 0, y: -4.82, z: -1}
+  m_LocalScale: {x: 61, y: 62.842197, z: 61}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1772192183}
@@ -4145,7 +4136,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.3, y: 386}
+  m_AnchoredPosition: {x: 2.3, y: 396.3}
   m_SizeDelta: {x: 703.6, y: 110.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1387005361
@@ -5569,7 +5560,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -287, y: 777.2}
+  m_AnchoredPosition: {x: -287, y: 793.69}
   m_SizeDelta: {x: 160, y: 66.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1834251491

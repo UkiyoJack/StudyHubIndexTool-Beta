@@ -47,10 +47,16 @@ public class SearchPage : MonoBehaviour
 
     private void Start()
     {
-        // Initialize with sample data
-        studySpaces.Add(new Location("Library", "AB12 3CD", 51.5074f, -0.1278f, "Quiet library with Wi-Fi", "Low", true, true, true));
-        studySpaces.Add(new Location("Cafe", "EF45 6GH", 51.5094f, -0.1280f, "Cozy cafe with power outlets", "Medium", true, true, false));
-        studySpaces.Add(new Location("Study Room", "GH78 9IJ", 51.5054f, -0.1275f, "Private study room", "Low", false, true, true));
+        //initalize with data preloaded.
+        studySpaces.Add(new Location("Pigeon Park, Birmingham", "B3 2QB", 52.481327867963614f, -1.8982472147330702f, "Public park in city centre with grassy areas and benches.", "High", false, false, false));
+        studySpaces.Add(new Location("Waterstones Book Store", "B1 7SL", 52.478861828142996f, -1.8946746259916927f, "Cosy bookstore with cafe and seating upstairs.", "Low", true, true, true));
+        studySpaces.Add(new Location("BCU drop-in Libraries", "B4 7BD", 52.48327379633388f, -1.8828681501529363f, "Drop-in study spaces (level 1, Curzon Building)", "Low", true, true, true));
+        studySpaces.Add(new Location("Starbucks Coffee Birmingham", "B2 4JH", 52.4793208620976f, -1.89930639905682f, "Starbucks Coffee Shop with seating", "Medium", true, true, true));
+        studySpaces.Add(new Location("Outdoor Quiet Seating (West side Birmingham)", "B1 1TT", 52.4782161f, -1.9065645f, "Outdoor quiet study space with stair-like seating", "Low", false, false, false));
+        studySpaces.Add(new Location("Birmingham Library", "B1 2ND", 52.479546929725664f, -1.908384190556989f, "Europe's largest public library, large amount of study spaces.", "Medium", true, true, true));
+        studySpaces.Add(new Location("Solihull Core Library", "B91 3RG", 52.412465036826234f, -1.779342922462714f, "Reasonably sized library with study areas", "Low", true, false, true));
+        studySpaces.Add(new Location("Brueton Park, Solihull", "B91 3DL", 52.40861256376181f, -1.762546757205329f, "Large park with quiet study spaces", "Medium", false, false, false));
+        studySpaces.Add(new Location("Touchwood Shopping Centre, Solihull", "B91 3GJ", 52.41312313738989f, -1.7797520319971898f, "Shopping centre with seating and study spaces", "High", true, false, true));
     }
 
     public void SetNoiseLevel(string level)
